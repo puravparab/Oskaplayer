@@ -17,12 +17,17 @@ def oskaplayer():
 					"B": "Black" 
 				}
 				print("You will play as " + player_list[player_piece] + "!\n")
+
+				# Prompt user for no of starting pieces
+				no_of_pieces = int(input("Enter the number of starting pieces: "))
 				break
 			else:
 				print("<Error: please enter either W or B> \n")
 
-		engine(player_piece, 4)
+		# Run oskaplayer game engine
+		engine(player_piece, no_of_pieces)
 
+		# Check if user wants to restart the game
 		while(True):
 			user_input = input("Play another game? (Enter Y for Yes or N for No): ")
 			if user_input == 'Y':

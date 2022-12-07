@@ -78,3 +78,4 @@ def print_board(Board):
 			else:
 				print(Board[i][j], end=" ")
 		print()
+	print("\n")
