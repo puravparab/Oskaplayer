@@ -1,4 +1,5 @@
 import math
+import copy
 
 """
 Create new board
@@ -79,3 +80,59 @@ def print_board(Board):
 				print(Board[i][j], end=" ")
 		print()
 	print("\n")
+
+
+"""
+Moves piece to valid location
+
+Function assumes that input is in this format:
+[
+	['B', '*', 'B', '*', 'B', '*', 'B'], 
+	['*', '_', '*', '_', '*', '_', '*'], 
+	['*', '*', '_', '*', '_', '*', '*'], 
+	['*', '_', '*', '_', '*', '_', '*'], 
+	['W', '*', 'W', '*', 'W', '*', 'W']]
+
+where
+	W = white piece
+	B = black piece
+	* = void space (not part of board)
+	_ = empty space (part of board)
+
+"""
+def move_piece(Board, curr_player, human_player, curr_location, desired_location):
+	at_curr_location = Board[curr_location[0]][curr_location[1]]
+	at_desired_location = Board[desired_location[0]][desired_location[1]]
+
+	# Make a deepcopy of the board
+	Board_copy = copy.deepcopy(Board)
+
+	# Check if current location has the curr_player piece on it and 
+	# if desired location has the "_" char
+	if at_curr_location == curr_player and at_desired_location == "_":
+
+		# Check if curr_location or desired_location is out of bounds
+		if (
+			curr_location[0] >= 0 and curr_location[0] < len(Board) and
+			curr_location[1] >= 0 and curr_location[1] < len(Board[0]) and
+			desired_location[0] >= 0 and desired_location[0] < len(Board) and
+			desired_location[1] >= 0 and desired_location[1] < len(Board[0])):
+
+			# Check if the targeted piece will move in the right direction
+			# (Upwards for a human player and downwards for the AI player)
+			# 
+			# Also checks if the piece moves to an diagonally adjacent empty space
+			if (
+				((human_player and curr_location[0] > desired_location[0]) or
+				(not human_player and curr_location[0] < desired_location[0]))
+				and
+				(curr_location[1] == desired_location[1] + 1 or curr_location[1] == desired_location[1] - 1)):
+
+				Board_copy[curr_location[0]][curr_location[1]] = "_"
+				Board_copy[desired_location[0]][desired_location[1]] = curr_player
+				print(Board_copy)
+				return [Board_copy, "Valid move"]
+
+	print(Board_copy)
+	print("Invalid")
+	return [Board_copy, "Invalid move"]
