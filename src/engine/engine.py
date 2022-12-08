@@ -11,3 +11,4 @@ def engine(player_piece, no_of_pieces):
 
 	Board = board.make_board(no_of_pieces, player_piece, ai_piece)
 	board.print_board(Board)
+	print(Board)
