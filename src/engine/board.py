@@ -72,7 +72,16 @@ B B B B
 
 """
 def print_board(Board):
+
+	for i in range(0, len(Board[0]) + 1):
+		if(i == 0):
+			print(" ", end=" ")
+		else:
+			print(i - 1, end=" ")
+	print()
+
 	for i in range(0, len(Board)):
+		print(i, end=" ")
 		for j in range(0, len(Board[i])):
 			if Board[i][j] == "*":
 				print(" ", end=" ")
