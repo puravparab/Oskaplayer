@@ -1,4 +1,4 @@
-from . import board
+from . import board, player
 
 def engine(player_piece, no_of_pieces):
 	if player_piece == "W":
@@ -9,6 +9,10 @@ def engine(player_piece, no_of_pieces):
 		print("Error: Player piece incorrect")
 		exit()
 
+	# Create new board
 	Board = board.make_board(no_of_pieces, player_piece, ai_piece)
 	board.print_board(Board)
-	print(Board)
+
+	# Test player turn
+	Board_new = player.player_turn(Board, player_piece)
+	board.print_board(Board_new)
