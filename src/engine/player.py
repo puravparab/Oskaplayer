@@ -22,6 +22,9 @@ def player_turn(Board, curr_player):
 			else:
 				print("<Error!: Please enter coordinates in the format [a,b]>")
 
+		selected_piece = selected_piece.replace(" ", "")
+		valid_targets = getters.get_valid_moves(board_copy, curr_player, selected_piece, True)
+		print("Choose from the following pieces - " + str(valid_targets))
 		target_location = input("Select a target location (enter co-ordinates): ")
 
 		user_confirmation = input(
