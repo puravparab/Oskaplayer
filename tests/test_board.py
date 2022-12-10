@@ -66,26 +66,6 @@ class TestMovePiece(unittest.TestCase):
 			None
 		)
 
-		# Move B forward to an invalid empty space
-		self.assertEqual(
-			move_piece([
-				['W', '*', 'W', '*', 'W', '*', 'W'], 
-				['*', '_', '*', '_', '*', '_', '*'], 
-				['*', '*', '_', '*', '_', '*', '*'],
-				['*', '_', '*', '_', '*', '_', '*'], 
-				['B', '*', 'B', '*', 'B', '*', 'B']],
-				"B", True, [4,0], [3,3]),
-			[[
-				['W', '*', 'W', '*', 'W', '*', 'W'], 
-				['*', '_', '*', '_', '*', '_', '*'], 
-				['*', '*', '_', '*', '_', '*', '*'],
-				['*', '_', '*', '_', '*', '_', '*'], 
-				['B', '*', 'B', '*', 'B', '*', 'B']],
-				"Invalid move"
-			],
-			None
-		)
-
 		# Move B forward to an invalid void space
 		self.assertEqual(
 			move_piece([
@@ -126,7 +106,7 @@ class TestMovePiece(unittest.TestCase):
 			None
 		)
 
-		# Make B do an illegal jump to an empty space
+		# Make B do a double jump to an empty space
 		self.assertEqual(
 			move_piece([
 				['W', '*', 'W', '*', 'W', '*', 'W'], 
@@ -138,10 +118,10 @@ class TestMovePiece(unittest.TestCase):
 			[[
 				['W', '*', 'W', '*', 'W', '*', 'W'], 
 				['*', '_', '*', '_', '*', '_', '*'], 
-				['*', '*', '_', '*', '_', '*', '*'],
+				['*', '*', '_', '*', 'B', '*', '*'],
 				['*', '_', '*', '_', '*', '_', '*'], 
-				['B', '*', 'B', '*', 'B', '*', 'B']],
-				"Invalid move"
+				['B', '*', '_', '*', 'B', '*', 'B']],
+				"Valid move"
 			],
 			None
 		)
@@ -206,26 +186,6 @@ class TestMovePiece(unittest.TestCase):
 			None
 		)
 
-		# Move W forward to an invalid empty space
-		self.assertEqual(
-			move_piece([
-				['W', '*', 'W', '*', 'W', '*', 'W'], 
-				['*', '_', '*', '_', '*', '_', '*'], 
-				['*', '*', '_', '*', '_', '*', '*'],
-				['*', '_', '*', '_', '*', '_', '*'], 
-				['B', '*', 'B', '*', 'B', '*', 'B']],
-				"W", False, [0,0], [1,3]),
-			[[
-				['W', '*', 'W', '*', 'W', '*', 'W'], 
-				['*', '_', '*', '_', '*', '_', '*'], 
-				['*', '*', '_', '*', '_', '*', '*'],
-				['*', '_', '*', '_', '*', '_', '*'], 
-				['B', '*', 'B', '*', 'B', '*', 'B']],
-				"Invalid move"
-			],
-			None
-		)
-
 		# Move W forward to an invalid void space
 		self.assertEqual(
 			move_piece([
@@ -266,7 +226,7 @@ class TestMovePiece(unittest.TestCase):
 			None
 		)
 
-		# Make W do an illegal jump to an empty space
+		# Make W do an double jump to an empty space
 		self.assertEqual(
 			move_piece([
 				['W', '*', 'W', '*', 'W', '*', 'W'], 
@@ -276,12 +236,12 @@ class TestMovePiece(unittest.TestCase):
 				['B', '*', 'B', '*', 'B', '*', 'B']],
 				"W", False, [0,0], [2,2]),
 			[[
-				['W', '*', 'W', '*', 'W', '*', 'W'], 
+				['_', '*', 'W', '*', 'W', '*', 'W'], 
 				['*', '_', '*', '_', '*', '_', '*'], 
-				['*', '*', '_', '*', '_', '*', '*'],
+				['*', '*', 'W', '*', '_', '*', '*'],
 				['*', '_', '*', '_', '*', '_', '*'], 
 				['B', '*', 'B', '*', 'B', '*', 'B']],
-				"Invalid move"
+				"Valid move"
 			],
 			None
 		)

@@ -134,10 +134,9 @@ def move_piece(Board, curr_player, human_player, curr_location, desired_location
 			# 
 			# Also checks if the piece moves to an diagonally adjacent empty space
 			if (
-				((human_player and curr_location[0] > desired_location[0]) or
-				(not human_player and curr_location[0] < desired_location[0]))
-				and
-				(curr_location[1] == desired_location[1] + 1 or curr_location[1] == desired_location[1] - 1)):
+				(human_player and curr_location[0] > desired_location[0]) or
+				(not human_player and curr_location[0] < desired_location[0])
+			):
 
 				Board_copy[curr_location[0]][curr_location[1]] = "_"
 				Board_copy[desired_location[0]][desired_location[1]] = curr_player
