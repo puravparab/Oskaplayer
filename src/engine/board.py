@@ -141,9 +141,6 @@ def move_piece(Board, curr_player, human_player, curr_location, desired_location
 
 				Board_copy[curr_location[0]][curr_location[1]] = "_"
 				Board_copy[desired_location[0]][desired_location[1]] = curr_player
-				# print(Board_copy)
 				return [Board_copy, "Valid move"]
-
-	# print(Board_copy)
-	# print("Invalid")
+				
 	return [Board_copy, "Invalid move"]
