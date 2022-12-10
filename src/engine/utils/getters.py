@@ -28,7 +28,7 @@ def get_valid_moves(Board, curr_player, piece_location, human_player):
 	if human_player:
 		# No valid moves if the piece is on the first row
 		if i == 0:
-			return list_of_pieces
+			return list_of_targets
 		else:
 			# Check if the left diagonally adjacent is empty
 			if j - 1 >= 0:
@@ -46,7 +46,7 @@ def get_valid_moves(Board, curr_player, piece_location, human_player):
 	elif not human_player:
 		# No valid moves if the piece is on the last row
 		if i == len(Board) - 1:
-			return list_of_pieces
+			return list_of_targets
 		else:
 			# Check if the left diagonally adjacent is empty
 			if j - 1 >= 0:
