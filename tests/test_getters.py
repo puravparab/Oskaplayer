@@ -5,6 +5,110 @@ sys.path.insert(0, '..')
 
 from src.engine.utils.getters import *
 
+class TestValidPieces(unittest.TestCase):
+	def test_get_valid_pieces_human(self):
+		# Starting Board
+		self.assertEqual(
+			get_valid_pieces([
+				['W', '*', 'W', '*', 'W', '*', 'W'], 
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['*', '*', '_', '*', '_', '*', '*'],
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['B', '*', 'B', '*', 'B', '*', 'B']],
+				"B", True
+			),
+			[[4,0], [4,2], [4,4], [4,6]]
+		)
+
+		self.assertEqual(
+			get_valid_pieces([
+				['B', '*', 'B', '*', 'B', '*', 'B'], 
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['*', '*', '_', '*', '_', '*', '*'],
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['W', '*', 'W', '*', 'W', '*', 'W']],
+				"W", True
+			),
+			[[4,0], [4,2], [4,4], [4,6]]
+		)
+
+		# When pieces are in play
+		self.assertEqual(
+			get_valid_pieces([
+				['B', '*', 'B', '*', 'B', '*', 'B'], 
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['*', '*', 'W', '*', '_', '*', '*'],
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['W', '*', '_', '*', 'W', '*', 'W']],
+				"W", True
+			),
+			[[2,2], [4,0], [4,4], [4,6]]
+		)
+
+		# Piece is blocked
+		self.assertEqual(
+			get_valid_pieces([
+				['B', '*', 'W', '*', 'B', '*', 'B'], 
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['*', '*', '_', '*', '_', '*', '*'],
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['W', '*', 'W', '*', '_', '*', 'W']],
+				"W", True
+			),
+			[[4,0], [4,2], [4,6]]
+		)
+
+	def test_get_valid_pieces_ai(self):
+		# Starting Board
+		self.assertEqual(
+			get_valid_pieces([
+				['B', '*', 'B', '*', 'B', '*', 'B'], 
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['*', '*', '_', '*', '_', '*', '*'],
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['w', '*', 'W', '*', 'W', '*', 'W']],
+				"B", False
+			),
+			[[0,0], [0,2], [0,4], [0,6]]
+		)
+		self.assertEqual(
+			get_valid_pieces([
+				['W', '*', 'W', '*', 'W', '*', 'W'], 
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['*', '*', '_', '*', '_', '*', '*'],
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['B', '*', 'B', '*', 'B', '*', 'B']],
+				"W", False
+			),
+			[[0,0], [0,2], [0,4], [0,6]]
+		)
+
+		# When pieces are in play
+		self.assertEqual(
+			get_valid_pieces([
+				['W', '*', 'W', '*', '_', '*', 'W'], 
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['*', '*', 'W', '*', '_', '*', '*'],
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['B', '*', 'B', '*', 'B', '*', 'B']],
+				"W", False
+			),
+			[[0,0], [0,2], [0,6], [2,2]]
+		)
+
+		# Piece is blocked
+		self.assertEqual(
+			get_valid_pieces([
+				['W', '*', 'W', '*', '_', '*', 'W'], 
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['*', '*', '_', '*', '_', '*', '*'],
+				['*', '_', '*', '_', '*', '_', '*'], 
+				['B', '*', 'B', '*', 'W', '*', 'B']],
+				"W", False
+			),
+			[[0,0], [0,2], [0,6]]
+		)
+
 class TestValidMoves(unittest.TestCase):
 	def test_get_valid_moves_human(self):
 		# Move B from back row
@@ -135,6 +239,7 @@ class TestValidMoves(unittest.TestCase):
 			),
 			[]
 		)
+
 
 if __name__ == "main":
 	unittest.main()
