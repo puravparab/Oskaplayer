@@ -6,9 +6,9 @@ B: Opponent player
 
 Step 1) 
 	For each row:
-		(Total # of A pieces on the board - # of B pieces in the row) * (relative index) ^ 2
+		# of A pieces in the row * (relative index) ^ 2
 
-	Sum the above values for each row -> sumA
+	Sum the above values for each row -> sumA 
 
 Step 2)
 	Repeat step 1 for B player -> sumB
@@ -17,7 +17,7 @@ Step 3)
 	# of B pieces - # of A pieces -> diffBA
 
 Step 4)
-	Score = sumA - sumB + diffBA
+	Score = (Total - # of A pieces) * sumA - (Total - # of B pieces) * sumB + diffBA
 
 Score:
 	+ve: Move favors A
@@ -27,8 +27,10 @@ Score:
 """
 def evaluator(Board, curr_player, human_player):
 	length = len(Board)
+
 	A_list = [0] * length
 	B_list = [0] * length
+	# Total count of A and B pieces on the board
 	A_count = 0
 	B_count = 0
 
@@ -48,7 +50,7 @@ def evaluator(Board, curr_player, human_player):
 					B_count += 1
 
 		# Add no of pieces to relative index in the list
-		if curr_player == human_player:
+		if human_player:
 			A_list[length-i-1] = A_per_row
 			B_list[i] = B_per_row
 		else:
@@ -61,12 +63,12 @@ def evaluator(Board, curr_player, human_player):
 	sumA = 0
 	sumB = 0
 	for i in range(0, length):
-		sumA += (total_pieces - A_list[i]) * pow(i, 2)
-		sumB += (total_pieces - B_list[i]) * pow(i, 2)
+		sumA += A_list[i] * pow(i, 2)
+		sumB += B_list[i] * pow(i, 2)
 
 	# Calculate diffBA:
 	diffBA = B_count - A_count
 
 	# Calculate score:
-	score = sumA - sumB + diffBA
+	score = (B_count * sumA) - (A_count * sumB) + diffBA
 	return score
