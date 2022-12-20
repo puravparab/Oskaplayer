@@ -18,6 +18,7 @@ def get_valid_pieces(Board, curr_player, human_player):
 
 	return list_of_pieces
 
+# TODO: Add move logic
 def get_valid_moves(Board, curr_player, piece_location, human_player):
 	list_of_targets = []
 
