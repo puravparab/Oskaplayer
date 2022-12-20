@@ -8,13 +8,23 @@ from .minimax import *
 def ai_player(Board, curr_player, human_player, depth):
 	board_copy = copy.deepcopy(Board)
 
+	# Get valid pieces for the AI to move:
 	valid_pieces = getters.get_valid_pieces(board_copy, curr_player, human_player)
+	# If there are no valid pieces return None
+	if valid_pieces == []:
+		return None
+
 	print(valid_pieces)
 
+	# Run Minimax to get an optimal move for the AI
 	[optimal_move, score] = minimax(board_copy, curr_player, human_player, valid_pieces, depth, True)
 
 	print(optimal_move)
+	# If there is no optimal move return None
+	if optimal_move == None:
+		return None
 
+	# Execute optimal move on the board
 	[board_copy, msg] = board.move_piece(
 		board_copy, 
 		curr_player, 

@@ -19,18 +19,30 @@ def engine(player_piece, no_of_pieces):
 		while True:
 			# Test player turn:
 			Board_new = player.player_turn(Board_new, player_piece)
+			if Board_new == None:
+				print("Stalemate")
+				return
 			board.print_board(Board_new)
 			
 			# Test AI turn:
 			Board_new = ai_player(Board_new, ai_piece, False, 2)
+			if Board_new == None:
+				print("Stalemate")
+				return
 			board.print_board(Board_new)
 
 	else:
 		while True:			
 			# Test AI turn:
 			Board_new = ai_player(Board_new, ai_piece, False, 2)
+			if Board_new == None:
+				print("Stalemate")
+				return
 			board.print_board(Board_new)
 
 			# Test player turn:
 			Board_new = player.player_turn(Board_new, player_piece)
+			if Board_new == None:
+				print("Stalemate")
+				return
 			board.print_board(Board_new)

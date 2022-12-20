@@ -12,6 +12,10 @@ def player_turn(Board, curr_player):
 		while True:
 			# Get valid pieces
 			valid_pieces = getters.get_valid_pieces(board_copy, curr_player, True)
+			# If there are no valid pieces return None
+			if valid_pieces == []:
+				return None
+
 			print("Choose from the following pieces - " + str(valid_pieces))
 			selected_piece = input("Enter the coordinates of the piece you want to move: ")
 			print()
