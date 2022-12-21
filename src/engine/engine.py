@@ -25,7 +25,7 @@ def engine(player_piece, no_of_pieces):
 			board.print_board(Board_new)
 			
 			# Test AI turn:
-			Board_new = ai_player(Board_new, ai_piece, False, 2)
+			Board_new = ai_player(Board_new, ai_piece, False, 5)
 			if Board_new == None:
 				print("Stalemate")
 				return
@@ -34,7 +34,7 @@ def engine(player_piece, no_of_pieces):
 	else:
 		while True:			
 			# Test AI turn:
-			Board_new = ai_player(Board_new, ai_piece, False, 2)
+			Board_new = ai_player(Board_new, ai_piece, False, 5)
 			if Board_new == None:
 				print("Stalemate")
 				return

@@ -1,5 +1,4 @@
-import copy
-
+import copy, time
 from .. import board
 from .. utils import getters, validators
 from .minimax import *
@@ -16,10 +15,13 @@ def ai_player(Board, curr_player, human_player, depth):
 
 	print(valid_pieces)
 
+	t = time.process_time()
 	# Run Minimax to get an optimal move for the AI
 	[optimal_move, score] = minimax(board_copy, curr_player, human_player, valid_pieces, depth, True)
+	elapsed_time = time.process_time() - t 
+	print(f'Time elapsed (Depth: {depth}): {elapsed_time}')
+	print(f'Optimal Move: {optimal_move}')
 
-	print(optimal_move)
 	# If there is no optimal move return None
 	if optimal_move == None:
 		return None
