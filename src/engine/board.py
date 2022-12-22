@@ -121,7 +121,7 @@ def move_piece(Board, curr_player, human_player, curr_location, desired_location
 		desired_location[1] >= 0 and desired_location[1] < len(Board[0])
 	):
 
-		# Store value at both locations
+		# Store value of both locations
 		at_curr_location = Board[curr_location[0]][curr_location[1]]
 		at_desired_location = Board[desired_location[0]][desired_location[1]]
 
@@ -140,6 +140,26 @@ def move_piece(Board, curr_player, human_player, curr_location, desired_location
 
 				Board_copy[curr_location[0]][curr_location[1]] = "_"
 				Board_copy[desired_location[0]][desired_location[1]] = curr_player
+
+				# If moving a piece involves jumping over an enemy piece
+				# Piece is played by a human
+				if (human_player and curr_location[0] == desired_location[0] + 2):
+					# Move left
+					if curr_location[1] == desired_location[1] + 2:
+						Board_copy[desired_location[0]+1][desired_location[1]+1] = "_"
+					# Move right
+					elif curr_location[1] == desired_location[1] - 2:
+						Board_copy[desired_location[0]+1][desired_location[1]-1] = "_"
+
+				# Piece is played by the AI
+				elif (not human_player and curr_location[0] == desired_location[0] - 2):
+					# Move left
+					if curr_location[1] == desired_location[1] + 2:
+						Board_copy[desired_location[0]-1][desired_location[1]+1] = "_"
+					# Move right
+					elif curr_location[1] == desired_location[1] - 2:
+						Board_copy[desired_location[0]-1][desired_location[1]-1] = "_"
+					
 				return [Board_copy, "Valid move"]
 				
 	return [Board_copy, "Invalid move"]

@@ -38,21 +38,19 @@ def run_game(player_piece, ai_piece, no_of_pieces):
 			Board = Board_new
 			winner = board_evaluator.win_check(Board, player_piece, ai_piece)
 			if winner == player_piece:
-				print(f'Congratulations! You won.')
+				print(f'Congratulations! You won.\n')
 			elif winner == ai_piece:
-				print(f'You lost. :(')
-			else:
-				print("The game ended in a stalemate.")
+				print(f'You lost. :(\n')
 
 		else:
 			if board_evaluator.win_check(Board, player_piece, ai_piece) == player_piece:
-				print(f'Congratulations! You won.')
+				print(f'Congratulations! You won.\n')
 				return
 			elif board_evaluator.win_check(Board, player_piece, ai_piece) == ai_piece:
-				print(f'You lost. :(')
+				print(f'You lost. :(\n')
 				return
 			else:
-				print("The game ended in a stalemate.")
+				print("The game ended in a stalemate.\n")
 				return
 
 		human_player = not human_player
