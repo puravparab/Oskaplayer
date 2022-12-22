@@ -29,6 +29,11 @@ def get_valid_moves(Board, curr_player, piece_location, human_player):
 	i = int(piece_location[1])
 	j = int(piece_location[3])
 
+	if curr_player == "W":
+		opponent = "B"
+	elif curr_player == "B":
+		opponent = "W"
+
 	# Human players can only move upwards
 	if human_player:
 		# No valid moves if the piece is on the first row
@@ -39,13 +44,19 @@ def get_valid_moves(Board, curr_player, piece_location, human_player):
 			if j - 1 >= 0:
 				if Board[i-1][j-1] == "_":
 					list_of_targets.append([i-1, j-1])
-				# Add jumping over opponent
+				# Jump over opponent diagonally
+				elif Board[i-1][j-1] == opponent:
+					if i - 2 >= 0 and j - 2 >= 0 and Board[i-2][j-2] == "_":
+						list_of_targets.append([i-2, j-2])
 
 			# Check if the right diagonally adjacent is empty
 			if j + 1 < len(Board[0]):
 				if Board[i-1][j+1] == "_":
 					list_of_targets.append([i-1, j+1])
-				# Add jumping over opponent
+				# Jump over opponent diagonally
+				elif Board[i-1][j+1] == opponent:
+					if i - 2 >= 0 and j + 2 < len(Board[0]) and Board[i-2][j+2] == "_":
+						list_of_targets.append([i-2, j+2])
 
 	# Ai player can only go downwards
 	elif not human_player:
@@ -57,12 +68,18 @@ def get_valid_moves(Board, curr_player, piece_location, human_player):
 			if j - 1 >= 0:
 				if Board[i+1][j-1] == "_":
 					list_of_targets.append([i+1, j-1])
-				# Add jumping over opponent
+				# Jump over opponent diagonally
+				elif Board[i+1][j-1] == opponent:
+					if i + 2 < len(Board) and j - 2 >= 0 and Board[i+2][j-2] == "_":
+						list_of_targets.append([i+2, j-2])
 
 			# Check if the left diagonally adjacent is empty
 			if j + 1 < len(Board[0]):
 				if Board[i+1][j+1] == "_":
 					list_of_targets.append([i+1, j+1])
-				# Add jumping over opponent
+				# Jump over opponent diagonally
+				elif Board[i+1][j+1] == opponent:
+					if i + 2 < len(Board) and j + 2 < len(Board[0]) and Board[i+2][j+2] == "_":
+						list_of_targets.append([i+2, j+2])
 	
 	return list_of_targets

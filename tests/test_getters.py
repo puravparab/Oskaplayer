@@ -109,6 +109,31 @@ class TestValidPieces(unittest.TestCase):
 			[[0,0], [0,2], [0,6]]
 		)
 
+	def test_get_valid_moves_with_jump(self):
+		self.assertEqual(
+			get_valid_pieces([
+				['_', '*', '_', '*', '_', '*', 'W'], 
+				['*', '_', '*', 'W', '*', '_', '*'], 
+				['*', '*', 'W', '*', 'W', '*', '*'],
+				['*', '_', '*', 'B', '*', '_', '*'], 
+				['B', '*', '_', '*', '_', '*', 'B']],
+				"B", True
+			),
+			[[3,3], [4,0], [4,6]]
+		)
+
+		self.assertEqual(
+			get_valid_pieces([
+				['_', '*', '_', '*', '_', '*', 'W'], 
+				['*', '_', '*', 'W', '*', '_', '*'], 
+				['*', '*', 'W', '*', 'W', '*', '*'],
+				['*', '_', '*', 'B', '*', '_', '*'], 
+				['B', '*', '_', '*', '_', '*', 'B']],
+				"W", False		
+			),
+			[[0,6], [2,2], [2,4]]
+		)
+
 class TestValidMoves(unittest.TestCase):
 	def test_get_valid_moves_human(self):
 		# Move B from back row
@@ -238,6 +263,32 @@ class TestValidMoves(unittest.TestCase):
 				"W", "[1,3]", False
 			),
 			[]
+		)
+
+	def test_get_valid_moves_with_jump(self):
+		# W can jump
+		self.assertEqual(
+			get_valid_moves([
+				['_', '*', '_', '*', '_', '*', 'W'], 
+				['*', '_', '*', 'W', '*', '_', '*'], 
+				['*', '*', 'W', '*', 'W', '*', '*'],
+				['*', '_', '*', 'B', '*', '_', '*'], 
+				['B', '*', '_', '*', '_', '*', 'B']],
+				"W", "[2,2]", False
+			),
+			[[3,1], [4,4]]
+		)
+
+		self.assertEqual(
+			get_valid_moves([
+				['_', '*', '_', '*', '_', '*', 'W'], 
+				['*', '_', '*', 'W', '*', '_', '*'], 
+				['*', '*', 'W', '*', 'W', '*', '*'],
+				['*', '_', '*', 'B', '*', '_', '*'], 
+				['B', '*', '_', '*', '_', '*', 'B']],
+				"B", "[3,3]", True
+			),
+			[[1,1], [1,5]]
 		)
 
 
