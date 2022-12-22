@@ -10,39 +10,35 @@ def engine(player_piece, no_of_pieces):
 		print("Error: Player piece incorrect")
 		exit()
 
-	# Create new board
+	run_game(player_piece, ai_piece, no_of_pieces)
+
+def run_game(player_piece, ai_piece, no_of_pieces):
+	# Create new game board
 	Board = board.make_board(no_of_pieces, player_piece, ai_piece)
-	board.print_board(Board)
 
-	Board_new = Board
+	count = 1
 	if player_piece == "W":
-		while True:
-			# Test player turn:
-			Board_new = player.player_turn(Board_new, player_piece)
-			if Board_new == None:
-				print("Stalemate")
-				return
-			board.print_board(Board_new)
-			
-			# Test AI turn:
-			Board_new = ai_player(Board_new, ai_piece, False, 5)
-			if Board_new == None:
-				print("Stalemate")
-				return
-			board.print_board(Board_new)
+		human_player = True
+	elif ai_piece == "W":
+		human_player = False
 
-	else:
-		while True:			
-			# Test AI turn:
-			Board_new = ai_player(Board_new, ai_piece, False, 5)
-			if Board_new == None:
-				print("Stalemate")
-				return
-			board.print_board(Board_new)
+	while True:
+		print()
+		if human_player:
+			print(f'** Turn {count} - Player {player_piece} **')
+			board.print_board(Board)
+			Board_new = player.player_turn(Board, player_piece)
 
-			# Test player turn:
-			Board_new = player.player_turn(Board_new, player_piece)
-			if Board_new == None:
-				print("Stalemate")
-				return
-			board.print_board(Board_new)
+		else:
+			print(f'Turn {count} - Player {ai_piece}')
+			board.print_board(Board)
+			Board_new = ai_player(Board, ai_piece, False, 4)
+
+		if Board_new != None:
+			Board = Board_new
+		else:
+			print("Stalemate")
+			return
+
+		human_player = not human_player
+		count += 1
