@@ -76,20 +76,32 @@ def evaluator(Board, curr_player, human_player):
 """
 Function takes in the board state and current player and determines if they have won
 """
-def win_check(Board, curr_player):
-	count = 0
+def win_check(Board, player_piece, ai_piece):
+	player_count = 0
+	player_end = 0
+	ai_count = 0
+	ai_end = 0
+
+	# Iterate through the board
 	for i in range(0, len(Board)):
 		for j in range(0, len(Board[0])):
-			if curr_player == "B":
-				if i == len(Board) - 1 and count > 0:
-					return False
-				if Board[i][j] == "B":
-					count += 1
+			# If the player piece is found update count
+			if Board[i][j] == player_piece:
+				player_count += 1
+				if i == 0:
+					player_end += 1
+			# IF the ai piece is found update count
+			elif Board[i][j] == ai_piece:
+				ai_count += 1
+				if i == len(Board) - 1:
+					ai_count += 1
 
-			if curr_player == "W":
-				if i > 0 and Board[i][j] == "W":
-					return False
-				if Board[i][j] == "W":
-					count += 1
-
-	return True
+	# If both players have pieces on rows that are not their end row
+	if ai_count > ai_end and player_count > player_end:
+		return None
+	# If all ai pieces are on its end row
+	elif ai_count == ai_end:
+		return ai_piece
+	# IF all player pieces are on its end row
+	elif player_count == player_end:
+		return player_piece
