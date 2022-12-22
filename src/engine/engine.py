@@ -32,13 +32,20 @@ def run_game(player_piece, ai_piece, no_of_pieces):
 		else:
 			print(f'Turn {count} - Player {ai_piece}')
 			board.print_board(Board)
-			Board_new = ai_player(Board, ai_piece, False, 4)
+			Board_new = ai_player(Board, ai_piece, False, 5)
 
 		if Board_new != None:
 			Board = Board_new
 		else:
-			print("Stalemate")
-			return
+			if board_evaluator.win_check(Board, player_piece):
+				print(f'Congratulations! You won.')
+				return
+			elif board_evaluator.win_check(Board, ai_piece):
+				print(f'You lost. :(')
+				return
+			else:
+				print("The game ended in a stalemate.")
+				return
 
 		human_player = not human_player
 		count += 1

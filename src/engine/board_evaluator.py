@@ -72,3 +72,24 @@ def evaluator(Board, curr_player, human_player):
 	# Calculate score:
 	score = (B_count * sumA) - (A_count * sumB) + diffBA
 	return score
+
+"""
+Function takes in the board state and current player and determines if they have won
+"""
+def win_check(Board, curr_player):
+	count = 0
+	for i in range(0, len(Board)):
+		for j in range(0, len(Board[0])):
+			if curr_player == "B":
+				if i == len(Board) - 1 and count > 0:
+					return False
+				if Board[i][j] == "B":
+					count += 1
+
+			if curr_player == "W":
+				if i > 0 and Board[i][j] == "W":
+					return False
+				if Board[i][j] == "W":
+					count += 1
+
+	return True

@@ -41,7 +41,6 @@ def minimax(Board, curr_player, human_player, valid_pieces, depth, is_max):
 					[valid_pieces[i][0], valid_pieces[i][1]], 
 					[valid_targets[j][0], valid_targets[j][1]]
 				)
-
 				board.print_board(board_copy)
 
 				if curr_player == "W": 
@@ -52,23 +51,21 @@ def minimax(Board, curr_player, human_player, valid_pieces, depth, is_max):
 				# Get valid pieces for the opponent on new board state
 				valid_pieces_next_move = getters.get_valid_pieces(board_copy, opponent, not human_player)
 				# If no valid pieces minimax algorithm return [None, None]
-				if valid_pieces_next_move == []:
-					return [None, None]
+				if valid_pieces_next_move != []:
+					# If valid pieces exist execute minimax on new board state
+					[optimal_move, score] = minimax(board_copy, opponent, not human_player, valid_pieces_next_move, depth-1, not is_max)
 
-				# If valid pieces exist execute minimax on new board state
-				[optimal_move, score] = minimax(board_copy, opponent, not human_player, valid_pieces_next_move, depth-1, not is_max)
-
-				# Store the optimal move and score for this branch
-				if optimal_move != None:
+					# Store the optimal move and score for this branch
 					print(str(valid_pieces[i]) + " to " + str(valid_targets[j]) + ": " + str(score))
 					move_permutations.append([[valid_pieces[i], valid_targets[j]], score])
-				# If optimal moves are not available return [None, None]
 				else:
-					return [None, None]
+					score = board_evaluator.evaluator(Board, curr_player, human_player)
+					move_permutations.append([[valid_pieces[i], valid_targets[j]], score])
 
 				print("------------")
 				print()
 
+		print(move_permutations)
 		print("Depth: " + str(depth))
 		print("Running max? " + str(is_max))
 
