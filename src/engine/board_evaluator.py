@@ -1,3 +1,5 @@
+import math
+
 """
 Scoring Algorithm:
 
@@ -26,6 +28,23 @@ Score:
 	
 """
 def evaluator(Board, curr_player, human_player):
+	# Determine if a player has won
+	if curr_player == "W":
+		opponent = "B"
+	elif curr_player == "B":
+		opponent = "W"
+
+	if human_player:
+		winner = win_check(Board, curr_player, opponent)
+	else:
+		winner = win_check(Board, opponent, curr_player)
+
+	if winner == curr_player:
+		return math.inf
+	elif winner == opponent:
+		return -math.inf
+
+	# Proceed if no win condition has been met:
 	length = len(Board)
 
 	A_list = [0] * length
