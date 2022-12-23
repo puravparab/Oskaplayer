@@ -94,7 +94,7 @@ def win_check(Board, player_piece, ai_piece):
 			elif Board[i][j] == ai_piece:
 				ai_count += 1
 				if i == len(Board) - 1:
-					ai_count += 1
+					ai_end += 1
 
 	# If both players have pieces on rows that are not their end row
 	if ai_count > ai_end and player_count > player_end:

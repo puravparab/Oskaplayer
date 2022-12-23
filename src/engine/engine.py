@@ -39,8 +39,12 @@ def run_game(player_piece, ai_piece, no_of_pieces):
 			winner = board_evaluator.win_check(Board, player_piece, ai_piece)
 			if winner == player_piece:
 				print(f'Congratulations! You won.\n')
+				board.print_board(Board)
+				return
 			elif winner == ai_piece:
+				board.print_board(Board)
 				print(f'You lost. :(\n')
+				return
 
 		else:
 			if board_evaluator.win_check(Board, player_piece, ai_piece) == player_piece:
