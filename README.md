@@ -19,7 +19,7 @@
 </p>
 
 # Overview
-Oska is played on a board like the one shown below. The two players face each other across the
+[Oska][oska-link] is played on a board like the one shown below. The two players face each other across the
 board. Each player begins with n pieces, with all of the player pieces on placed on the row closest to them.
 
 Oskaplayer is an implementation of the board game with one human player facing an AI opponent. The AI opponent plays the game using [minimax][minimax-link] with [alpha-beta pruning][alpha-beta-link] to find the most optimal move to play.
