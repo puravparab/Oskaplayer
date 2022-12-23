@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-    <a href="#How it works">HOW IT WORKS</a>
+    <a href="#How it works">Overview</a>
 	&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 	<a href="#Rules">RULES</a>
 	&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -43,7 +43,7 @@ Oskaplayer is an implementation of the board game with one human player facing a
     A piece may jump forward on the diagonal over an opponent's piece to an empty space, thereby capturing the opponent's piece and removing it from the board. Multiple jumps are not allowed. Also, even if a capture is possible, it does not have to be made if other moves are possible.
 
 * #### Endgame (Win)
-    A player win if all of the opponent's pieces have been removed from the board. A player can also win if all of their remaining pieces have been moved to the opponent's starting row. (A player may want to sacrifice pieces in order to have fewer pieces to move to the opponent's starting row. But this approach carries some risk in that every sacrificed piece brings the player closer to having all of his or her pieces removed from the board, thereby losing the game.)
+    A player wins if all of the opponent's pieces have been removed from the board. A player can also win if all of their remaining pieces have been moved to the opponent's starting row. (A player may want to sacrifice pieces in order to have fewer pieces to move to the opponent's starting row. But this approach carries some risk in that every sacrificed piece brings the player closer to having all of his or her pieces removed from the board, thereby losing the game.)
 
 * #### Endgame (Loss)
     A player might lose if they have no remaining pieces left. A player may also lose if the opponent has met the above win conditions.
@@ -81,5 +81,6 @@ python oskaplayer.py
 
 ---
 
+[oska-link]: https://boardgamegeek.com/boardgame/19495/oska
 [minimax-link]: https://en.wikipedia.org/wiki/Minimax
 [alpha-beta-link]: https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning
