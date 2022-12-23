@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-    <a href="#How it works">Overview</a>
+    <a href="#How it works">OVERVIEW</a>
 	&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 	<a href="#Rules">RULES</a>
 	&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
