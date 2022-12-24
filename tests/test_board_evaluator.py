@@ -1,4 +1,5 @@
 import sys
+import math
 import unittest
 
 sys.path.insert(0, '..')
@@ -76,7 +77,7 @@ class TestBoardEvaluator(unittest.TestCase):
 				['*', '_', '*', '_', '*', 'W', '*'], 
 				['B', '*', 'B', '*', 'B', '*', '_']],
 				"W", True),
-			-45,
+			-math.inf,
 			None
 		)
 
@@ -125,7 +126,7 @@ class TestBoardEvaluator(unittest.TestCase):
 				['*', '_', '*', '_', '*', '_', '*'], 
 				['B', '*', '_', '*', '_', '*', '_']],
 				"W", True),
-			44,
+			math.inf,
 			None
 		)
 
