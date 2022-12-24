@@ -48,8 +48,8 @@ Oskaplayer is an implementation of the board game with one human player facing a
 * #### Endgame (Loss)
     A player might lose if they have no remaining pieces left. A player may also lose if the opponent has met the above win conditions.
 
-* #### Endgame (Win)
-    Stalemate occurs if a player has no legal moves left.
+* #### Endgame (Stalemate)
+    Stalemate occurs if a player(s) have no legal moves left.
 
 # Installation
 
