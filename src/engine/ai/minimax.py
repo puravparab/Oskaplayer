@@ -11,6 +11,14 @@ class Node:
 		self.Board = Board
 		self.optimal_move = []
 
+	def count_nodes(self):
+		count = 0
+		if self.nodeList == []:
+			count += 1
+		for i in range(0, len(self.nodeList)):
+			count += self.nodeList[i].count_nodes()
+		return count
+
 """
 MINIMAX ALGORITHM
 

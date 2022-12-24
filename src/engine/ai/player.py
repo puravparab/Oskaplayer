@@ -22,8 +22,8 @@ def ai_player(Board, curr_player, human_player, depth):
 	# Run Old Minimax to get an optimal move for the AI
 	elapsed_time = time.process_time() - t 
 	print(f'Time elapsed (Depth: {depth}): {elapsed_time} seconds')
+	print(f'No of nodes: {root.count_nodes()}')
 	print(f'Optimal Move: {optimal_move[0]} to {optimal_move[1]} with a score of {score}')
-
 	# If there is no optimal move return None
 	if optimal_move == None:
 		return None
