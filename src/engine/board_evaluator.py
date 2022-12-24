@@ -118,6 +118,14 @@ def win_check(Board, player_piece, ai_piece):
 	# If both players have pieces on rows that are not their end row
 	if ai_count > ai_end and player_count > player_end:
 		return None
+
+	# If human player has no pieces left
+	elif player_count == 0:
+		return ai_piece
+	# If ai has no pieces left
+	elif ai_count == 0:
+		return player_piece
+		
 	# If all ai pieces are on its end row
 	elif ai_count == ai_end:
 		return ai_piece
