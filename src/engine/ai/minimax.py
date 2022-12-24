@@ -37,7 +37,7 @@ Returns:
 	- score: Score of the optimal move
 
 """
-def minimax(Board, curr_node, curr_player, human_player, valid_pieces, depth, max_depth, is_max):
+def minimax(Board, curr_node, curr_player, human_player, valid_pieces, depth, max_depth, is_max, alpha, beta):
 	# If leaf node is reached
 	if depth == max_depth:
 		return [[], board_evaluator.evaluator(Board, curr_player, human_player)]
@@ -74,7 +74,7 @@ def minimax(Board, curr_node, curr_player, human_player, valid_pieces, depth, ma
 			valid_pieces_next_move = getters.get_valid_pieces(board_copy, opponent, not human_player)
 			if valid_pieces_next_move != []:
 				# If valid pieces exist execute minimax on new board state
-				[optimal_move, score] = minimax(board_copy, child_node, opponent, not human_player, valid_pieces_next_move, depth+1, max_depth, not is_max)
+				[optimal_move, score] = minimax(board_copy, child_node, opponent, not human_player, valid_pieces_next_move, depth+1, max_depth, not is_max, alpha, beta)
 				child_node.optimal_move.append(optimal_move)
 			else:
 				score = board_evaluator.evaluator(board_copy, opponent, not human_player)
@@ -82,8 +82,21 @@ def minimax(Board, curr_node, curr_player, human_player, valid_pieces, depth, ma
 				
 			child_node.score = score
 			curr_node.nodeList.append(child_node)
+
+			# Update alpha or beta
+			if is_max:
+				alpha = max(alpha, score)
+			else:
+				beta = min(beta, score)
+
 			# Store moves and their respective scores
 			move_permutations.append([[valid_pieces[i], valid_targets[j]], score])
+
+			# If alpha > beta prune the remaining branches
+			if alpha >= beta:
+				break
+		if alpha >= beta:
+			break
 
 	# Find move with the maximum or minimum score
 	max_index = 0

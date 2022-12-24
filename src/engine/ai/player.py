@@ -1,4 +1,4 @@
-import copy, time
+import copy, time, math
 from .. import board
 from .. utils import getters, validators
 from .minimax import *
@@ -17,7 +17,7 @@ def ai_player(Board, curr_player, human_player, depth):
 
 	# Run Minimax to get an optimal move for the AI
 	root = Node(None, [], None, board_copy)
-	[optimal_move, score] = minimax(board_copy, root, curr_player, human_player, valid_pieces, 0, depth, True)
+	[optimal_move, score] = minimax(board_copy, root, curr_player, human_player, valid_pieces, 0, depth, True, -math.inf, math.inf)
 	
 	# Run Old Minimax to get an optimal move for the AI
 	elapsed_time = time.process_time() - t 
