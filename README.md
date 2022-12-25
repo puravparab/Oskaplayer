@@ -11,11 +11,13 @@
 </p>
 
 <p align="center">
-    <a href="#How it works">OVERVIEW</a>
+    <a href="#Overview">OVERVIEW</a>
 	&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 	<a href="#Rules">RULES</a>
 	&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 	<a href="#Installation">INSTALLATION</a>
+	&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+	<a href="#Results">RESULTS</a>
 </p>
 
 # Overview
@@ -79,6 +81,15 @@ cd src
 python oskaplayer.py
 ```
 
+# Results
+
+![minimax-node-4piece][https://github.com/puravparab/Oskaplayer/blob/8df6968edbd34483bd0b89fc6ec73c82eec3d836/assets/images/minimaxNode4piece.png]
+
+![minimax-time-4piece][https://github.com/puravparab/Oskaplayer/blob/8df6968edbd34483bd0b89fc6ec73c82eec3d836/assets/images/minimaxTime4piece.png]
+
+![minimax-node-5piece][https://github.com/puravparab/Oskaplayer/blob/8df6968edbd34483bd0b89fc6ec73c82eec3d836/assets/images/minimaxNode5piece.png]
+
+![minimax-time-5piece][https://github.com/puravparab/Oskaplayer/blob/8df6968edbd34483bd0b89fc6ec73c82eec3d836/assets/images/minimaxTime5piece.png]
 ---
 
 [oska-link]: https://boardgamegeek.com/boardgame/19495/oska
